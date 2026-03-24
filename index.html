@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lake House Borowe</title>
+  <meta name="description" content="Luksusowy dom nad jeziorem na Mazurach dla grup do 15 osób. Prywatna plaża, pomost, sauna, jacuzzi i szybki internet Starlink.">
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #1d1d1b;
+      background: #f7f5f1;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(247,245,241,.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e7e0d6;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 0;
+    }
+    .brand {
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+    .hero {
+      min-height: 82vh;
+      color: white;
+      background:
+        linear-gradient(rgba(0,0,0,.40), rgba(0,0,0,.34)),
+        url('assets/img5.jpeg') center/cover no-repeat;
+      display: flex;
+      align-items: end;
+    }
+    .hero-card {
+      width: min(760px, 100%);
+      margin: 0 0 54px 0;
+      padding: 30px;
+      background: rgba(0,0,0,.30);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 22px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    }
+    h1 {
+      font-size: clamp(34px, 7vw, 72px);
+      line-height: 1.02;
+      margin: 0 0 12px;
+    }
+    h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.1;
+      margin: 0 0 18px;
+    }
+    h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+    .lead {
+      font-size: clamp(16px, 2vw, 22px);
+      margin: 0 0 22px;
+      max-width: 60ch;
+    }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 12px;
+      color: #7a6e60;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .hero .eyebrow { color: rgba(255,255,255,.82); }
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 14px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform .15s ease, opacity .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: #ffffff;
+      color: #111;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255,255,255,.5);
+    }
+    .btn-dark {
+      background: #111;
+      color: #fff;
+    }
+    .btn-light {
+      background: #fff;
+      color: #111;
+      border: 1px solid #e7e0d6;
+    }
+    section { padding: 72px 0; }
+    .intro {
+      max-width: 70ch;
+      color: #4d463f;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .stat {
+      background: #fff;
+      border: 1px solid #e7e0d6;
+      border-radius: 18px;
+      padding: 20px;
+    }
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+    .reviews-box {
+      margin-top: 26px;
+      padding: 24px;
+      background: #111;
+      color: #fff;
+      border-radius: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 26px;
+    }
+    .feature, .room, .contact-card, .map-side {
+      background: #fff;
+      border: 1px solid #e7e0d6;
+      border-radius: 18px;
+      padding: 22px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .gallery-item {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+    .gallery img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 18px;
+      display: block;
+      background: #ddd;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.01);
+      box-shadow: 0 12px 24px rgba(0,0,0,.12);
+    }
+    .sleep-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .notice {
+      background: #f0ebe3;
+      border: 1px solid #e2d7c7;
+      border-radius: 16px;
+      padding: 16px 18px;
+      color: #4d463f;
+      margin-top: 16px;
+    }
+    .location-wrap {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 20px;
+      align-items: start;
+      margin-top: 24px;
+    }
+    .map-card {
+      background: #fff;
+      border: 1px solid #e7e0d6;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 420px;
+      border: 0;
+      display: block;
+    }
+    .contact-links a {
+      display: inline-block;
+      margin: 6px 10px 6px 0;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .contact-big {
+      font-size: 24px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    footer {
+      padding: 30px 0 50px;
+      color: #6f665c;
+      font-size: 14px;
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 24px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner {
+      position: relative;
+      width: min(1100px, 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox img {
+      max-width: 100%;
+      max-height: 85vh;
+      border-radius: 14px;
+      display: block;
+    }
+    .lb-btn {
+      position: absolute;
+      border: 0;
+      border-radius: 999px;
+      width: 46px;
+      height: 46px;
+      background: rgba(255,255,255,.92);
+      cursor: pointer;
+      font-size: 24px;
+      line-height: 1;
+    }
+    .lb-close { top: -12px; right: -6px; }
+    .lb-prev { left: 8px; }
+    .lb-next { right: 8px; }
+    @media (max-width: 900px) {
+      .stats, .feature-grid, .gallery, .sleep-grid, .location-wrap {
+        grid-template-columns: 1fr;
+      }
+      .gallery img { height: 220px; }
+      .hero { min-height: 70vh; }
+      .hero-card {
+        margin-bottom: 34px;
+        padding: 22px;
+      }
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .reviews-box {
+        align-items: flex-start;
+      }
+      .lb-prev { left: 0; }
+      .lb-next { right: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container nav">
+      <div class="brand">Lake House Borowe</div>
+      <div class="nav-links">
+        <a href="#o-domu">O domu</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#noclegi">Noclegi</a>
+        <a href="#opinie">Opinie</a>
+        <a href="#lokalizacja">Lokalizacja</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div class="eyebrow">Mazury • Borowe 41A</div>
+        <h1>Lake House Borowe</h1>
+        <p class="lead">Nowoczesny dom nad jeziorem dla grup do 15 osób. Prywatna plaża, duży pomost, strefa SPA, 8 łazienek i przestrzeń zaprojektowana na wspólny odpoczynek.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="tel:513067750">Zadzwoń</a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/lakehouse_borowe?igsh=MTMya256YzNpcm10bA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="o-domu">
+    <div class="container">
+      <div class="eyebrow">O domu</div>
+      <h2>Stworzone dla większych grup i rodzin</h2>
+      <p class="intro">
+        Lake House Borowe powstał z myślą o wygodnych wyjazdach większych grup. To miejsce łączy bezpośredni dostęp do jeziora,
+        całoroczną strefę relaksu i duże wspólne przestrzenie z komfortem prywatnych sypialni i łazienek.
+      </p>
+
+      <div class="stats">
+        <div class="stat"><strong>15</strong>maksymalnie gości</div>
+        <div class="stat"><strong>6</strong>sypialni</div>
+        <div class="stat"><strong>8</strong>łazienek</div>
+        <div class="stat"><strong>15 min</strong>do Mrągowa</div>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature">
+          <h3>Prywatna linia brzegowa</h3>
+          <p>Własna piaszczysta plaża, łagodne wejście do czystego jeziora i duży pomost do wypoczynku oraz wędkowania.</p>
+        </div>
+        <div class="feature">
+          <h3>Strefa SPA</h3>
+          <p>Jacuzzi na 7 osób, sauna na 12 osób i ściana solna z widokiem na jezioro.</p>
+        </div>
+        <div class="feature">
+          <h3>Duże wspólne przestrzenie</h3>
+          <p>Przestronna kuchnia, jadalnia, salon z kominkiem i taras, które wygodnie mieszczą całą grupę.</p>
+        </div>
+        <div class="feature">
+          <h3>Komfort przez cały rok</h3>
+          <p>Starlink, klimatyzacja, ogrzewanie, SUP-y, łódka, możliwość morsowania i szybki dojazd z Warszawy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <div class="container">
+      <div class="eyebrow">Galeria</div>
+      <h2>Zobacz Lake House Borowe</h2>
+      <p class="intro">Kliknij w zdjęcie, aby je powiększyć.</p>
+      <div class="gallery">
+        <button class="gallery-item" data-index="0" aria-label="Otwórz zdjęcie 1"><img src="assets/img0.jpeg" alt="Lake House Borowe zdjęcie 1" loading="lazy"></button>
+<button class="gallery-item" data-index="1" aria-label="Otwórz zdjęcie 2"><img src="assets/img1.jpeg" alt="Lake House Borowe zdjęcie 2" loading="lazy"></button>
+<button class="gallery-item" data-index="2" aria-label="Otwórz zdjęcie 3"><img src="assets/img2.jpeg" alt="Lake House Borowe zdjęcie 3" loading="lazy"></button>
+<button class="gallery-item" data-index="3" aria-label="Otwórz zdjęcie 4"><img src="assets/img3.jpeg" alt="Lake House Borowe zdjęcie 4" loading="lazy"></button>
+<button class="gallery-item" data-index="4" aria-label="Otwórz zdjęcie 5"><img src="assets/img4.jpeg" alt="Lake House Borowe zdjęcie 5" loading="lazy"></button>
+<button class="gallery-item" data-index="5" aria-label="Otwórz zdjęcie 6"><img src="assets/img5.jpeg" alt="Lake House Borowe zdjęcie 6" loading="lazy"></button>
+<button class="gallery-item" data-index="6" aria-label="Otwórz zdjęcie 7"><img src="assets/img6.jpeg" alt="Lake House Borowe zdjęcie 7" loading="lazy"></button>
+<button class="gallery-item" data-index="7" aria-label="Otwórz zdjęcie 8"><img src="assets/img7.jpeg" alt="Lake House Borowe zdjęcie 8" loading="lazy"></button>
+      </div>
+    </div>
+  </section>
+
+  <section id="noclegi">
+    <div class="container">
+      <div class="eyebrow">Noclegi</div>
+      <h2>Układ sypialni</h2>
+      <div class="sleep-grid">
+        <div class="room">
+          <h3>Sypialnia 1</h3>
+          <p>Łóżko podwójne 180 cm, balkon i widok na jezioro.</p>
+        </div>
+        <div class="room">
+          <h3>Sypialnia 2</h3>
+          <p>Łóżko podwójne 200 cm, balkon i widok na jezioro.</p>
+        </div>
+        <div class="room">
+          <h3>Sypialnia 3</h3>
+          <p>Trzy pojedyncze łóżka z opcją połączenia dwóch z nich.</p>
+        </div>
+        <div class="room">
+          <h3>Sypialnia 4</h3>
+          <p>Dwa pojedyncze łóżka z opcją połączenia.</p>
+        </div>
+        <div class="room">
+          <h3>Sypialnia 5</h3>
+          <p>Dwa pojedyncze łóżka z opcją połączenia.</p>
+        </div>
+        <div class="room">
+          <h3>Sypialnia 6</h3>
+          <p>Dwa pojedyncze łóżka z opcją połączenia.</p>
+        </div>
+      </div>
+      <div class="notice">
+        Na piętrze znajduje się 6 sypialni. Każda ma własną łazienkę, klimatyzację i sterowane ogrzewanie.
+        Dodatkowo możliwe jest dołożenie dwóch pojedynczych dostawek.
+      </div>
+    </div>
+  </section>
+
+  <section id="opinie">
+    <div class="container">
+      <div class="eyebrow">Opinie</div>
+      <h2>Opinie naszych gości</h2>
+      <div class="reviews-box">
+        <div>Naszą najlepszą wizytówką są opinie w Google i na portalach rezerwacyjnych.</div>
+        <a class="btn btn-light" href="https://maps.app.goo.gl/iLr5Mts6jeKbXQGr7?g_st=ic" target="_blank" rel="noopener noreferrer">Zobacz opinie</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="lokalizacja">
+    <div class="container">
+      <div class="eyebrow">Lokalizacja</div>
+      <h2>Borowe 41A, warmińsko-mazurskie</h2>
+      <div class="location-wrap">
+        <div class="map-card">
+          <iframe
+            src="https://maps.google.com/maps?q=Borowe%2041A%2C%20warmi%C5%84sko-mazurskie&t=&z=12&ie=UTF8&iwloc=&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa lokalizacji Lake House Borowe">
+          </iframe>
+        </div>
+        <div class="map-side">
+          <h3>Dobry dojazd i świetna baza wypadowa</h3>
+          <p>Do Mrągowa jest około 15 minut. W okolicy są trasy piesze i rowerowe, spływ Krutynią oraz restauracje i sklepy.</p>
+          <a class="btn btn-dark" href="https://maps.google.com/?q=Borowe+41A+warmi%C5%84sko-mazurskie" target="_blank" rel="noopener noreferrer">Otwórz w Google Maps</a>
+          <div class="notice">
+            Kalendarz dostępności najlepiej podpiąć po publikacji strony online.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <div class="container">
+      <div class="eyebrow">Kontakt</div>
+      <h2>Zapytaj o termin pobytu</h2>
+      <div class="contact-card">
+        <p><strong>Napisz na Instagramie</strong></p>
+        <p class="contact-links">
+          <a class="contact-big" href="https://www.instagram.com/lakehouse_borowe?igsh=MTMya256YzNpcm10bA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">@lakehouse_borowe</a>
+        </p>
+        <p><strong>lub zadzwoń</strong></p>
+        <p class="contact-links">
+          <a class="contact-big" href="tel:513067750">513 067 750</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-inner">
+      <button class="lb-btn lb-close" id="lbClose" aria-label="Zamknij">×</button>
+      <button class="lb-btn lb-prev" id="lbPrev" aria-label="Poprzednie">‹</button>
+      <img id="lbImage" src="" alt="Powiększone zdjęcie">
+      <button class="lb-btn lb-next" id="lbNext" aria-label="Następne">›</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">© Lake House Borowe</div>
+  </footer>
+
+  <script>
+    const slides = [
+      "assets/img0.jpeg",
+      "assets/img1.jpeg",
+      "assets/img2.jpeg",
+      "assets/img3.jpeg",
+      "assets/img4.jpeg",
+      "assets/img5.jpeg",
+      "assets/img6.jpeg",
+      "assets/img7.jpeg"
+    ];
+
+    const lightbox = document.getElementById('lightbox');
+    const lbImage = document.getElementById('lbImage');
+    const lbClose = document.getElementById('lbClose');
+    const lbPrev = document.getElementById('lbPrev');
+    const lbNext = document.getElementById('lbNext');
+    const galleryButtons = document.querySelectorAll('.gallery-item');
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      lbImage.src = slides[currentIndex];
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      lbImage.src = slides[currentIndex];
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      lbImage.src = slides[currentIndex];
+    }
+
+    galleryButtons.forEach(btn => {
+      btn.addEventListener('click', () => openLightbox(Number(btn.dataset.index)));
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', showPrev);
+    lbNext.addEventListener('click', showNext);
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showNext();
+    });
+  </script>
+</body>
+</html>
