@@ -8,14 +8,18 @@
   <style>
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { margin:0; font-family: Arial, Helvetica, sans-serif; color:#1d1d1b; background:#f7f5f1; line-height:1.6; }
-    a { color: inherit; }
+    body { margin:0; font-family:Arial, Helvetica, sans-serif; color:#1d1d1b; background:#f7f5f1; line-height:1.6; }
+    a { color:inherit; }
     .container { width:min(1180px, calc(100% - 32px)); margin:0 auto; }
     .topbar { position:sticky; top:0; z-index:20; background:rgba(247,245,241,.97); backdrop-filter:blur(8px); border-bottom:1px solid #e7e0d6; }
     .nav { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:16px 0; }
     .brand { font-weight:700; letter-spacing:.04em; text-transform:uppercase; font-size:16px; }
+    .nav-right { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
     .nav-links { display:flex; gap:22px; flex-wrap:wrap; font-size:17px; font-weight:700; }
     .nav-links a { text-decoration:none; padding:6px 0; }
+    .lang-switch { display:flex; gap:8px; }
+    .lang-btn { border:1px solid #d8cec0; background:#fff; color:#1d1d1b; padding:7px 12px; border-radius:999px; cursor:pointer; font-weight:700; font-size:14px; }
+    .lang-btn.active { background:#111; color:#fff; border-color:#111; }
     .hero { min-height:84vh; color:white; background:linear-gradient(rgba(0,0,0,.30), rgba(0,0,0,.28)), url('assets/img0.jpeg') center center/cover no-repeat; display:flex; align-items:end; }
     .hero-card { width:min(780px, 100%); margin:0 0 54px 0; padding:30px; background:rgba(0,0,0,.24); border:1px solid rgba(255,255,255,.18); border-radius:22px; box-shadow:0 10px 30px rgba(0,0,0,.18); }
     h1 { font-size:clamp(34px, 7vw, 72px); line-height:1.02; margin:0 0 12px; }
@@ -60,12 +64,16 @@
     .lb-close { top:-12px; right:-6px; }
     .lb-prev { left:8px; }
     .lb-next { right:8px; }
+    .lang-en { display:none; }
+    body.en .lang-pl { display:none; }
+    body.en .lang-en { display:initial; }
     @media (max-width: 900px) {
       .stats, .feature-grid, .gallery, .sleep-grid, .location-wrap { grid-template-columns:1fr; }
       .gallery img { height:220px; }
       .hero { min-height:72vh; background-position:center center; }
       .hero-card { margin-bottom:34px; padding:22px; }
       .nav { align-items:flex-start; flex-direction:column; }
+      .nav-right { width:100%; justify-content:space-between; }
       .nav-links { font-size:16px; gap:16px; }
       .calendar-card iframe { min-height:600px; }
     }
@@ -75,14 +83,20 @@
   <div class="topbar">
     <div class="container nav">
       <div class="brand">Lake House Borowe</div>
-      <div class="nav-links">
-        <a href="#o-domu">O domu</a>
-        <a href="#zdjecia">Zdjęcia</a>
-        <a href="#pokoje">Pokoje</a>
-        <a href="#opinie">Opinie</a>
-        <a href="#kalendarz">Kalendarz</a>
-        <a href="#lokalizacja">Lokalizacja</a>
-        <a href="#kontakt">Kontakt</a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#o-domu"><span class="lang-pl">O domu</span><span class="lang-en">About</span></a>
+          <a href="#zdjecia"><span class="lang-pl">Zdjęcia</span><span class="lang-en">Photos</span></a>
+          <a href="#pokoje"><span class="lang-pl">Pokoje</span><span class="lang-en">Rooms</span></a>
+          <a href="#opinie"><span class="lang-pl">Opinie</span><span class="lang-en">Reviews</span></a>
+          <a href="#kalendarz"><span class="lang-pl">Kalendarz</span><span class="lang-en">Calendar</span></a>
+          <a href="#lokalizacja"><span class="lang-pl">Lokalizacja</span><span class="lang-en">Location</span></a>
+          <a href="#kontakt"><span class="lang-pl">Kontakt</span><span class="lang-en">Contact</span></a>
+        </div>
+        <div class="lang-switch">
+          <button class="lang-btn active" id="btn-pl" type="button">PL</button>
+          <button class="lang-btn" id="btn-en" type="button">EN</button>
+        </div>
       </div>
     </div>
   </div>
@@ -90,11 +104,14 @@
   <section class="hero">
     <div class="container">
       <div class="hero-card">
-        <div class="eyebrow">Mazury • Borowe 41A</div>
+        <div class="eyebrow"><span class="lang-pl">Mazury • Borowe 41A</span><span class="lang-en">Masuria • Borowe 41A</span></div>
         <h1>Lake House Borowe</h1>
-        <p class="lead">Nowoczesny dom nad jeziorem dla grup do 15 osób. Prywatna plaża, duży pomost, strefa SPA, 8 łazienek i przestrzeń zaprojektowana na wspólny odpoczynek.</p>
+        <p class="lead">
+          <span class="lang-pl">Nowoczesny dom nad jeziorem dla grup do 15 osób. Prywatna plaża, duży pomost, strefa SPA, 8 łazienek i przestrzeń zaprojektowana na wspólny odpoczynek.</span>
+          <span class="lang-en">A modern lakeside house for groups of up to 15 guests. Private beach, large pier, SPA area, 8 bathrooms and generous shared spaces designed for relaxing together.</span>
+        </p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="tel:513067750">Zadzwoń</a>
+          <a class="btn btn-primary" href="tel:513067750"><span class="lang-pl">Zadzwoń</span><span class="lang-en">Call now</span></a>
           <a class="btn btn-secondary" href="https://www.instagram.com/lakehouse_borowe?igsh=MTMya256YzNpcm10bA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram</a>
         </div>
       </div>
@@ -103,92 +120,93 @@
 
   <section id="o-domu">
     <div class="container">
-      <div class="eyebrow">O domu</div>
-      <h2>Stworzone dla większych grup i rodzin</h2>
-      <p class="intro">Lake House Borowe powstał z myślą o wygodnych wyjazdach większych grup. To miejsce łączy bezpośredni dostęp do jeziora, całoroczną strefę relaksu i duże wspólne przestrzenie z komfortem prywatnych sypialni i łazienek.</p>
+      <div class="eyebrow"><span class="lang-pl">O domu</span><span class="lang-en">About</span></div>
+      <h2><span class="lang-pl">Stworzone dla większych grup i rodzin</span><span class="lang-en">Created for larger groups and families</span></h2>
+      <p class="intro"><span class="lang-pl">Lake House Borowe powstał z myślą o wygodnych wyjazdach większych grup. To miejsce łączy bezpośredni dostęp do jeziora, całoroczną strefę relaksu i duże wspólne przestrzenie z komfortem prywatnych sypialni i łazienek.</span><span class="lang-en">Lake House Borowe was created for comfortable stays for larger groups. It combines direct lake access, a year-round relaxation area and spacious shared interiors with the comfort of private bedrooms and bathrooms.</span></p>
       <div class="stats">
-        <div class="stat"><strong>15</strong>maksymalnie gości</div>
-        <div class="stat"><strong>6</strong>sypialni</div>
-        <div class="stat"><strong>8</strong>łazienek</div>
-        <div class="stat"><strong>15 min</strong>do Mrągowa</div>
+        <div class="stat"><strong>15</strong><span class="lang-pl">maksymalnie gości</span><span class="lang-en">maximum guests</span></div>
+        <div class="stat"><strong>6</strong><span class="lang-pl">sypialni</span><span class="lang-en">bedrooms</span></div>
+        <div class="stat"><strong>8</strong><span class="lang-pl">łazienek</span><span class="lang-en">bathrooms</span></div>
+        <div class="stat"><strong>15 min</strong><span class="lang-pl">do Mrągowa</span><span class="lang-en">to Mrągowo</span></div>
       </div>
       <div class="feature-grid">
-        <div class="feature"><h3>Prywatna linia brzegowa</h3><p>Własna piaszczysta plaża, łagodne wejście do czystego jeziora i duży pomost do wypoczynku oraz wędkowania.</p></div>
-        <div class="feature"><h3>Strefa SPA</h3><p>Jacuzzi na 7 osób, sauna na całą grupę i ściana solna. Wszystko z pięknym widokiem na jezioro.</p></div>
-        <div class="feature"><h3>Duże wspólne przestrzenie</h3><p>Przestronna kuchnia, jadalnia, salon z kominkiem i taras, które wygodnie mieszczą całą grupę.</p></div>
-        <div class="feature"><h3>Komfort przez cały rok</h3><p>Internet satelitarny Starlink, klimatyzacja, ogrzewanie, SUP-y, łódka, możliwość morsowania i szybki dojazd z Warszawy i Trójmiasta.</p></div>
+        <div class="feature"><h3><span class="lang-pl">Prywatna linia brzegowa</span><span class="lang-en">Private waterfront</span></h3><p><span class="lang-pl">Własna piaszczysta plaża, łagodne wejście do czystego jeziora i duży pomost do wypoczynku oraz wędkowania.</span><span class="lang-en">Private sandy beach, gentle access to a clean lake and a large pier for relaxing and fishing.</span></p></div>
+        <div class="feature"><h3><span class="lang-pl">Strefa SPA</span><span class="lang-en">SPA area</span></h3><p><span class="lang-pl">Jacuzzi na 7 osób, sauna na całą grupę i ściana solna. Wszystko z pięknym widokiem na jezioro.</span><span class="lang-en">A jacuzzi for 7 guests, sauna for the whole group and a salt wall. All with a beautiful lake view.</span></p></div>
+        <div class="feature"><h3><span class="lang-pl">Duże wspólne przestrzenie</span><span class="lang-en">Large shared spaces</span></h3><p><span class="lang-pl">Przestronna kuchnia, jadalnia, salon z kominkiem i taras, które wygodnie mieszczą całą grupę.</span><span class="lang-en">A spacious kitchen, dining area, living room with fireplace and terrace that comfortably accommodate the whole group.</span></p></div>
+        <div class="feature"><h3><span class="lang-pl">Komfort przez cały rok</span><span class="lang-en">Comfort all year round</span></h3><p><span class="lang-pl">Internet satelitarny Starlink, klimatyzacja, ogrzewanie, SUP-y, łódka, możliwość morsowania i szybki dojazd z Warszawy i Trójmiasta.</span><span class="lang-en">Starlink satellite internet, air conditioning, heating, SUP boards, a boat, winter swimming and quick access from Warsaw and the Tri-City area.</span></p></div>
       </div>
     </div>
   </section>
 
   <section id="zdjecia">
     <div class="container">
-      <div class="eyebrow">Zdjęcia</div>
-      <h2>Zobacz Lake House Borowe</h2>
-      <p class="intro">Kliknij w zdjęcie, aby je powiększyć. Galeria jest ułożona od wnętrz, przez strefę SPA i pokoje, po widoki na zewnątrz.</p>
-      <div class="gallery"><button class="gallery-item" data-index="0" aria-label="Otwórz zdjęcie 1"><img src="assets/img0.jpeg" alt="Lake House Borowe zdjęcie 1" loading="lazy"></button>
-<button class="gallery-item" data-index="1" aria-label="Otwórz zdjęcie 2"><img src="assets/img1.jpeg" alt="Lake House Borowe zdjęcie 2" loading="lazy"></button>
-<button class="gallery-item" data-index="2" aria-label="Otwórz zdjęcie 3"><img src="assets/img2.jpeg" alt="Lake House Borowe zdjęcie 3" loading="lazy"></button>
-<button class="gallery-item" data-index="3" aria-label="Otwórz zdjęcie 4"><img src="assets/img3.jpeg" alt="Lake House Borowe zdjęcie 4" loading="lazy"></button>
-<button class="gallery-item" data-index="4" aria-label="Otwórz zdjęcie 5"><img src="assets/img4.jpeg" alt="Lake House Borowe zdjęcie 5" loading="lazy"></button>
-<button class="gallery-item" data-index="5" aria-label="Otwórz zdjęcie 6"><img src="assets/img5.jpeg" alt="Lake House Borowe zdjęcie 6" loading="lazy"></button>
-<button class="gallery-item" data-index="6" aria-label="Otwórz zdjęcie 7"><img src="assets/img6.jpeg" alt="Lake House Borowe zdjęcie 7" loading="lazy"></button>
-<button class="gallery-item" data-index="7" aria-label="Otwórz zdjęcie 8"><img src="assets/img7.jpeg" alt="Lake House Borowe zdjęcie 8" loading="lazy"></button>
-<button class="gallery-item" data-index="8" aria-label="Otwórz zdjęcie 9"><img src="assets/img8.jpeg" alt="Lake House Borowe zdjęcie 9" loading="lazy"></button>
-<button class="gallery-item" data-index="9" aria-label="Otwórz zdjęcie 10"><img src="assets/img9.jpeg" alt="Lake House Borowe zdjęcie 10" loading="lazy"></button>
-<button class="gallery-item" data-index="10" aria-label="Otwórz zdjęcie 11"><img src="assets/img10.jpeg" alt="Lake House Borowe zdjęcie 11" loading="lazy"></button>
-<button class="gallery-item" data-index="11" aria-label="Otwórz zdjęcie 12"><img src="assets/img11.jpeg" alt="Lake House Borowe zdjęcie 12" loading="lazy"></button>
-<button class="gallery-item" data-index="12" aria-label="Otwórz zdjęcie 13"><img src="assets/img12.jpeg" alt="Lake House Borowe zdjęcie 13" loading="lazy"></button>
-<button class="gallery-item" data-index="13" aria-label="Otwórz zdjęcie 14"><img src="assets/img13.jpeg" alt="Lake House Borowe zdjęcie 14" loading="lazy"></button>
-<button class="gallery-item" data-index="14" aria-label="Otwórz zdjęcie 15"><img src="assets/img14.jpeg" alt="Lake House Borowe zdjęcie 15" loading="lazy"></button></div>
+      <div class="eyebrow"><span class="lang-pl">Zdjęcia</span><span class="lang-en">Photos</span></div>
+      <h2><span class="lang-pl">Zobacz Lake House Borowe</span><span class="lang-en">See Lake House Borowe</span></h2>
+      <p class="intro"><span class="lang-pl">Kliknij w zdjęcie, aby je powiększyć. Galeria jest ułożona od wnętrz, przez strefę SPA i pokoje, po widoki na zewnątrz.</span><span class="lang-en">Click on any photo to enlarge it. The gallery is arranged from interiors through the SPA area and rooms to the outdoor views.</span></p>
+      <div class="gallery">
+        <button class="gallery-item" data-index="0" aria-label="Otwórz zdjęcie 1"><img src="assets/img1.jpeg" alt="Lake House Borowe zdjęcie 1" loading="lazy"></button>
+        <button class="gallery-item" data-index="1" aria-label="Otwórz zdjęcie 2"><img src="assets/img2.jpeg" alt="Lake House Borowe zdjęcie 2" loading="lazy"></button>
+        <button class="gallery-item" data-index="2" aria-label="Otwórz zdjęcie 3"><img src="assets/img3.jpeg" alt="Lake House Borowe zdjęcie 3" loading="lazy"></button>
+        <button class="gallery-item" data-index="3" aria-label="Otwórz zdjęcie 4"><img src="assets/img4.jpeg" alt="Lake House Borowe zdjęcie 4" loading="lazy"></button>
+        <button class="gallery-item" data-index="4" aria-label="Otwórz zdjęcie 5"><img src="assets/img5.jpeg" alt="Lake House Borowe zdjęcie 5" loading="lazy"></button>
+        <button class="gallery-item" data-index="5" aria-label="Otwórz zdjęcie 6"><img src="assets/img6.jpeg" alt="Lake House Borowe zdjęcie 6" loading="lazy"></button>
+        <button class="gallery-item" data-index="6" aria-label="Otwórz zdjęcie 7"><img src="assets/img7.jpeg" alt="Lake House Borowe zdjęcie 7" loading="lazy"></button>
+        <button class="gallery-item" data-index="7" aria-label="Otwórz zdjęcie 8"><img src="assets/img8.jpeg" alt="Lake House Borowe zdjęcie 8" loading="lazy"></button>
+        <button class="gallery-item" data-index="8" aria-label="Otwórz zdjęcie 9"><img src="assets/img9.jpeg" alt="Lake House Borowe zdjęcie 9" loading="lazy"></button>
+        <button class="gallery-item" data-index="9" aria-label="Otwórz zdjęcie 10"><img src="assets/img10.jpeg" alt="Lake House Borowe zdjęcie 10" loading="lazy"></button>
+        <button class="gallery-item" data-index="10" aria-label="Otwórz zdjęcie 11"><img src="assets/img11.jpeg" alt="Lake House Borowe zdjęcie 11" loading="lazy"></button>
+        <button class="gallery-item" data-index="11" aria-label="Otwórz zdjęcie 12"><img src="assets/img12.jpeg" alt="Lake House Borowe zdjęcie 12" loading="lazy"></button>
+        <button class="gallery-item" data-index="12" aria-label="Otwórz zdjęcie 13"><img src="assets/img13.jpeg" alt="Lake House Borowe zdjęcie 13" loading="lazy"></button>
+        <button class="gallery-item" data-index="13" aria-label="Otwórz zdjęcie 14"><img src="assets/img14.jpeg" alt="Lake House Borowe zdjęcie 14" loading="lazy"></button>
+      </div>
     </div>
   </section>
 
   <section id="pokoje">
     <div class="container">
-      <div class="eyebrow">Pokoje</div>
-      <h2>Układ sypialni na piętrze</h2>
+      <div class="eyebrow"><span class="lang-pl">Pokoje</span><span class="lang-en">Rooms</span></div>
+      <h2><span class="lang-pl">Układ sypialni na piętrze</span><span class="lang-en">Bedroom layout upstairs</span></h2>
       <div class="sleep-grid">
-        <div class="room"><h3>Sypialnia 1</h3><p>Łóżko podwójne 180 cm, balkon i widok na jezioro. Własna łazienka, klimatyzacja i sterowanie ogrzewaniem. Możliwość rozłożenia dostawki.</p></div>
-        <div class="room"><h3>Sypialnia 2</h3><p>Łóżko podwójne 200 cm, balkon i widok na jezioro. Własna łazienka, klimatyzacja i sterowanie ogrzewaniem. Możliwość rozłożenia dostawki.</p></div>
-        <div class="room"><h3>Sypialnia 3</h3><p>Trzy pojedyncze łóżka z opcją połączenia dwóch z nich. Własna łazienka, klimatyzacja i sterowanie ogrzewaniem.</p></div>
-        <div class="room"><h3>Sypialnia 4</h3><p>Dwa pojedyncze łóżka z opcją połączenia. Własna łazienka, klimatyzacja i sterowanie ogrzewaniem.</p></div>
-        <div class="room"><h3>Sypialnia 5</h3><p>Dwa pojedyncze łóżka z opcją połączenia. Własna łazienka, klimatyzacja i sterowanie ogrzewaniem.</p></div>
-        <div class="room"><h3>Sypialnia 6</h3><p>Dwa pojedyncze łóżka z opcją połączenia. Własna łazienka, klimatyzacja i sterowanie ogrzewaniem.</p></div>
+        <div class="room"><h3><span class="lang-pl">Sypialnia 1</span><span class="lang-en">Bedroom 1</span></h3><p><span class="lang-pl">Łóżko podwójne 180 cm, balkon i widok na jezioro. Własna łazienka, klimatyzacja i sterowanie ogrzewaniem. Możliwość rozłożenia dostawki.</span><span class="lang-en">Double bed 180 cm, balcony and lake view. Private bathroom, air conditioning and individual heating control. Extra bed can be added.</span></p></div>
+        <div class="room"><h3><span class="lang-pl">Sypialnia 2</span><span class="lang-en">Bedroom 2</span></h3><p><span class="lang-pl">Łóżko podwójne 200 cm, balkon i widok na jezioro. Własna łazienka, klimatyzacja i sterowanie ogrzewaniem. Możliwość rozłożenia dostawki.</span><span class="lang-en">Double bed 200 cm, balcony and lake view. Private bathroom, air conditioning and individual heating control. Extra bed can be added.</span></p></div>
+        <div class="room"><h3><span class="lang-pl">Sypialnia 3</span><span class="lang-en">Bedroom 3</span></h3><p><span class="lang-pl">Trzy pojedyncze łóżka z opcją połączenia dwóch z nich. Własna łazienka, klimatyzacja i sterowanie ogrzewaniem.</span><span class="lang-en">Three single beds with the option to combine two of them. Private bathroom, air conditioning and individual heating control.</span></p></div>
+        <div class="room"><h3><span class="lang-pl">Sypialnia 4</span><span class="lang-en">Bedroom 4</span></h3><p><span class="lang-pl">Dwa pojedyncze łóżka z opcją połączenia. Własna łazienka, klimatyzacja i sterowanie ogrzewaniem.</span><span class="lang-en">Two single beds with the option to combine them. Private bathroom, air conditioning and individual heating control.</span></p></div>
+        <div class="room"><h3><span class="lang-pl">Sypialnia 5</span><span class="lang-en">Bedroom 5</span></h3><p><span class="lang-pl">Dwa pojedyncze łóżka z opcją połączenia. Własna łazienka, klimatyzacja i sterowanie ogrzewaniem.</span><span class="lang-en">Two single beds with the option to combine them. Private bathroom, air conditioning and individual heating control.</span></p></div>
+        <div class="room"><h3><span class="lang-pl">Sypialnia 6</span><span class="lang-en">Bedroom 6</span></h3><p><span class="lang-pl">Dwa pojedyncze łóżka z opcją połączenia. Własna łazienka, klimatyzacja i sterowanie ogrzewaniem.</span><span class="lang-en">Two single beds with the option to combine them. Private bathroom, air conditioning and individual heating control.</span></p></div>
       </div>
     </div>
   </section>
 
   <section id="opinie">
     <div class="container">
-      <div class="eyebrow">Opinie</div>
-      <h2>Opinie naszych gości</h2>
+      <div class="eyebrow"><span class="lang-pl">Opinie</span><span class="lang-en">Reviews</span></div>
+      <h2><span class="lang-pl">Opinie naszych gości</span><span class="lang-en">Guest reviews</span></h2>
       <div class="reviews-box">
-        <div>Naszą najlepszą wizytówką są opinie w Google i na portalach rezerwacyjnych.</div>
-        <a class="btn btn-light" href="https://www.google.com/maps/place/Lake+House+Borowe/@53.774736,21.2235237,902m/data=!3m1!1e3!4m8!3m7!1s0x46e21b9914aa60ed:0xb667719561c764db!8m2!3d53.774736!4d21.2235237!9m1!1b1!16s%2Fg%2F11krbp6bsq!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDMyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Zobacz opinie</a>
+        <div><span class="lang-pl">Naszą najlepszą wizytówką są opinie w Google i na portalach rezerwacyjnych.</span><span class="lang-en">Our best showcase is the feedback we receive on Google and rental platforms.</span></div>
+        <a class="btn btn-light" href="https://www.google.com/maps/place/Lake+House+Borowe/@53.774736,21.2235237,902m/data=!3m1!1e3!4m8!3m7!1s0x46e21b9914aa60ed:0xb667719561c764db!8m2!3d53.774736!4d21.2235237!9m1!1b1!16s%2Fg%2F11krbp6bsq!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDMyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer"><span class="lang-pl">Zobacz opinie</span><span class="lang-en">See reviews</span></a>
       </div>
     </div>
   </section>
 
   <section id="kalendarz">
     <div class="container">
-      <div class="eyebrow">Kalendarz</div>
-      <h2>Sprawdź wolne terminy</h2>
+      <div class="eyebrow"><span class="lang-pl">Kalendarz</span><span class="lang-en">Calendar</span></div>
+      <h2><span class="lang-pl">Sprawdź wolne terminy</span><span class="lang-en">Check available dates</span></h2>
       <div class="calendar-card"><iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FWarsaw&showPrint=0&src=N2ZlM2YxNDE0YTU3YTZkZWE0Y2VjYWQ0Yjc4ODUxZjUyZjIxZDg5ZTEyOGI5OTYzZGIxMTQ1NDU0YWJlM2IzYkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23d50000" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe></div>
-      <div class="notice">Kalendarz pokazuje dostępność. Dane gości nie są wyświetlane.</div>
+      <div class="notice"><span class="lang-pl">Kalendarz pokazuje dostępność. Dane gości nie są wyświetlane.</span><span class="lang-en">The calendar shows availability only. Guest data is not displayed.</span></div>
     </div>
   </section>
 
   <section id="lokalizacja">
     <div class="container">
-      <div class="eyebrow">Lokalizacja</div>
-      <h2>Borowe 41A, warmińsko-mazurskie</h2>
+      <div class="eyebrow"><span class="lang-pl">Lokalizacja</span><span class="lang-en">Location</span></div>
+      <h2><span class="lang-pl">Borowe 41A, warmińsko-mazurskie</span><span class="lang-en">Borowe 41A, Warmian-Masurian region</span></h2>
       <div class="location-wrap">
         <div class="map-card"><iframe src="https://maps.google.com/maps?q=Borowe%2041A%2C%20warmi%C5%84sko-mazurskie&t=&z=12&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa lokalizacji Lake House Borowe"></iframe></div>
         <div class="map-side">
-          <h3>Dobry dojazd i świetna baza wypadowa</h3>
-          <p>Do Mrągowa jest około 15 minut. W okolicy są trasy piesze i rowerowe, spływ Krutynią oraz restauracje i sklepy.</p>
-          <a class="btn btn-dark" href="https://maps.google.com/?q=Borowe+41A+warmi%C5%84sko-mazurskie" target="_blank" rel="noopener noreferrer">Otwórz w Google Maps</a>
+          <h3><span class="lang-pl">Dobry dojazd i świetna baza wypadowa</span><span class="lang-en">Easy access and a great base for exploring</span></h3>
+          <p><span class="lang-pl">Do Mrągowa jest około 15 minut. W okolicy są trasy piesze i rowerowe, spływ Krutynią oraz restauracje i sklepy.</span><span class="lang-en">Mrągowo is only about 15 minutes away. The area offers hiking and cycling routes, the Krutynia kayaking trail, restaurants and shops.</span></p>
+          <a class="btn btn-dark" href="https://maps.google.com/?q=Borowe+41A+warmi%C5%84sko-mazurskie" target="_blank" rel="noopener noreferrer"><span class="lang-pl">Otwórz w Google Maps</span><span class="lang-en">Open in Google Maps</span></a>
         </div>
       </div>
     </div>
@@ -196,12 +214,12 @@
 
   <section id="kontakt">
     <div class="container">
-      <div class="eyebrow">Kontakt</div>
-      <h2>Zapytaj o termin pobytu</h2>
+      <div class="eyebrow"><span class="lang-pl">Kontakt</span><span class="lang-en">Contact</span></div>
+      <h2><span class="lang-pl">Zapytaj o termin pobytu</span><span class="lang-en">Ask about your stay dates</span></h2>
       <div class="contact-card">
         <p><strong>📷 Instagram</strong></p>
         <p class="contact-links"><a class="contact-big" href="https://www.instagram.com/lakehouse_borowe?igsh=MTMya256YzNpcm10bA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">@lakehouse_borowe</a></p>
-        <p><strong>📞 Telefon</strong></p>
+        <p><strong>📞 <span class="lang-pl">Telefon</span><span class="lang-en">Phone</span></strong></p>
         <p class="contact-links"><a class="contact-big" href="tel:513067750">513 067 750</a></p>
       </div>
     </div>
@@ -220,21 +238,8 @@
 
   <script>
     const slides = [
-      "assets/img0.jpeg",
-      "assets/img1.jpeg",
-      "assets/img2.jpeg",
-      "assets/img3.jpeg",
-      "assets/img4.jpeg",
-      "assets/img5.jpeg",
-      "assets/img6.jpeg",
-      "assets/img7.jpeg",
-      "assets/img8.jpeg",
-      "assets/img9.jpeg",
-      "assets/img10.jpeg",
-      "assets/img11.jpeg",
-      "assets/img12.jpeg",
-      "assets/img13.jpeg",
-      "assets/img14.jpeg"
+      "assets/img1.jpeg","assets/img2.jpeg","assets/img3.jpeg","assets/img4.jpeg","assets/img5.jpeg","assets/img6.jpeg","assets/img7.jpeg",
+      "assets/img8.jpeg","assets/img9.jpeg","assets/img10.jpeg","assets/img11.jpeg","assets/img12.jpeg","assets/img13.jpeg","assets/img14.jpeg"
     ];
     const lightbox = document.getElementById('lightbox');
     const lbImage = document.getElementById('lbImage');
@@ -243,6 +248,7 @@
     const lbNext = document.getElementById('lbNext');
     const galleryButtons = document.querySelectorAll('.gallery-item');
     let currentIndex = 0;
+
     function openLightbox(index) {
       currentIndex = index;
       lbImage.src = slides[currentIndex];
@@ -272,6 +278,31 @@
       if (e.key === 'ArrowLeft') showPrev();
       if (e.key === 'ArrowRight') showNext();
     });
+
+    const btnPl = document.getElementById('btn-pl');
+    const btnEn = document.getElementById('btn-en');
+
+    function setLanguage(lang) {
+      if (lang === 'en') {
+        document.body.classList.add('en');
+        document.documentElement.lang = 'en';
+        btnEn.classList.add('active');
+        btnPl.classList.remove('active');
+        localStorage.setItem('lakehouse_language', 'en');
+      } else {
+        document.body.classList.remove('en');
+        document.documentElement.lang = 'pl';
+        btnPl.classList.add('active');
+        btnEn.classList.remove('active');
+        localStorage.setItem('lakehouse_language', 'pl');
+      }
+    }
+
+    btnPl.addEventListener('click', () => setLanguage('pl'));
+    btnEn.addEventListener('click', () => setLanguage('en'));
+
+    const savedLanguage = localStorage.getItem('lakehouse_language');
+    if (savedLanguage === 'en') setLanguage('en');
   </script>
 </body>
 </html>
